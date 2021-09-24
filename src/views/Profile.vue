@@ -1,8 +1,8 @@
 <template>
   <div>
     <add-quick-note />
-    <current-year />
-    <blue-button class="btn" width="200px" height="50px" text="Détails des notes"/>
+    <current-year @click="goToCurrentYear"/>
+    <blue-button @click="goToCurrentYear" class="btn" width="200px" height="50px" text="Détails des notes"/>
   </div>
 </template>
 
@@ -16,6 +16,12 @@ export default {
     AddQuickNote,
     CurrentYear,
     BlueButton
+  },
+  methods: {
+    goToCurrentYear() {
+      this.$store.state.headerName = "Détails des notes";
+      this.$router.push('/current')
+    }
   }
 }
 

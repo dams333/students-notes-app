@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <div class="center-container">
+    <div :class='[
+    {"center-container": center},
+    {"container-not-centerd": !center}
+    ]'>
       <the-header></the-header>
       <router-view></router-view>
     </div>
@@ -14,7 +17,17 @@ export default {
   name: 'App',
   components: {
     TheHeader,
-  }
+  },
+  data() {
+    return {
+      center: true
+    }
+  },
+  watch: {
+      '$route' () {
+        this.center = !(this.$route.path === "/current");
+      }
+    }
 }
 
 </script>
@@ -46,6 +59,13 @@ export default {
     top: 0;
     left: 0;
     align-items: center;
+    justify-content: center;
+  }
+
+  .container-not-centerd {
+    display: block;
+    top: 0;
+    left: 0;
     justify-content: center;
   }
 

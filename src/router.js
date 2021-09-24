@@ -3,6 +3,7 @@ import TheChooseConnexion from './views/features/connection/TheChooseConnexion'
 import TheLogin from './views/features/connection/TheLogin'
 import TheRegister from './views/features/connection/TheRegister'
 import Profile from './views/Profile'
+import AllBranches from './views/AllBranches'
 
 const routes = [
     {
@@ -20,6 +21,10 @@ const routes = [
     {
         path: '/profile',
         component: Profile
+    },
+    {
+        path: '/current',
+        component: AllBranches
     },
     {
         path: "/:catchAll(.*)",

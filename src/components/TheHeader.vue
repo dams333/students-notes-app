@@ -34,6 +34,7 @@ export default {
     width: 100%;
     height: 60px;
     background-color: #8CBBF1;
+    z-index: 2;
 }
 
 .center {
