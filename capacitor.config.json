@@ -1,0 +1,6 @@
+{
+  "appId": "ch.dams333.studentsApp",
+  "appName": "StudentsApp",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

@@ -36,23 +36,30 @@ export default {
     background-color: #FDFDFE;
   }
 
-  input,
-  textarea,
-  button,
-  select,
-  a {
+  * {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
   }
 
   .center-container {
     height: 100vh;
-    background-color: transparent;
-    position: fixed;
     display: flex;
     top: 0;
     left: 0;
     align-items: center;
     justify-content: center;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: 0ms;
+    transition-delay: 0ms;
+    -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+    -webkit-transition-delay: 9999s;
+  }
+  textarea:focus, input:focus{
+    outline: none;
   }
 
 </style>
