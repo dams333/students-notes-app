@@ -2,7 +2,7 @@
   <div class="branches">
     <current-year class="current" />
     <div class="all-branches">
-      <branch-note class="note-item" v-for='(branch, index) in notes' :key='index' :branch='branch' />
+      <branch-note class="note-item" v-for='(branch, index) in notes' @click='toBranch(branch.id, branch.name)' :key='index' :branch='branch' />
     </div>
   </div>
 </template>
@@ -16,147 +16,139 @@ export default {
     return {
       notes: [
         {
-          name: 'App. des mathématiques',
-          note: 5.5
-        },
-        {
           name: 'Allemand',
-          note: 2.5
+          note: 2.5,
+          id: 'allemand'
         },
         {
           name: 'Français',
-          note: 4.5
+          note: 4.5,
+          id: 'francais'
         },
         {
           name: 'Allemand',
-          note: 2.5
+          note: 2.5,
+          id: 'allemand'
         },
         {
           name: 'Français',
-          note: 4.5
+          note: 4.5,
+          id: 'francais'
         },
         {
           name: 'Allemand',
-          note: 2.5
+          note: 2.5,
+          id: 'allemand'
         },
         {
           name: 'Français',
-          note: 4.5
+          note: 4.5,
+          id: 'francais'
         },
         {
           name: 'Allemand',
-          note: 2.5
+          note: 2.5,
+          id: 'allemand'
         },
         {
           name: 'Français',
-          note: 4.5
+          note: 4.5,
+          id: 'francais'
         },
         {
           name: 'Allemand',
-          note: 2.5
+          note: 2.5,
+          id: 'allemand'
         },
         {
           name: 'Français',
-          note: 4.5
+          note: 4.5,
+          id: 'francais'
         },
         {
           name: 'Allemand',
-          note: 2.5
+          note: 2.5,
+          id: 'allemand'
         },
         {
           name: 'Français',
-          note: 4.5
+          note: 4.5,
+          id: 'francais'
         },
         {
           name: 'Allemand',
-          note: 2.5
+          note: 2.5,
+          id: 'allemand'
         },
         {
           name: 'Français',
-          note: 4.5
+          note: 4.5,
+          id: 'francais'
         },
         {
           name: 'Allemand',
-          note: 2.5
+          note: 2.5,
+          id: 'allemand'
         },
         {
           name: 'Français',
-          note: 4.5
+          note: 4.5,
+          id: 'francais'
         },
         {
           name: 'Allemand',
-          note: 2.5
+          note: 2.5,
+          id: 'allemand'
         },
         {
           name: 'Français',
-          note: 4.5
+          note: 4.5,
+          id: 'francais'
         },
         {
           name: 'Allemand',
-          note: 2.5
+          note: 2.5,
+          id: 'allemand'
         },
         {
           name: 'Français',
-          note: 4.5
+          note: 4.5,
+          id: 'francais'
         },
         {
           name: 'Allemand',
-          note: 2.5
+          note: 2.5,
+          id: 'allemand'
         },
         {
           name: 'Français',
-          note: 4.5
+          note: 4.5,
+          id: 'francais'
         },
         {
           name: 'Allemand',
-          note: 2.5
+          note: 2.5,
+          id: 'allemand'
         },
         {
           name: 'Français',
-          note: 4.5
+          note: 4.5,
+          id: 'francais'
         },
-        {
-          name: 'Allemand',
-          note: 2.5
-        },
-        {
-          name: 'Français',
-          note: 4.5
-        },
-        {
-          name: 'Allemand',
-          note: 2.5
-        },
-        {
-          name: 'Français',
-          note: 4.5
-        },
-        {
-          name: 'Allemand',
-          note: 2.5
-        },
-        {
-          name: 'Français',
-          note: 4.5
-        },
-        {
-          name: 'Allemand',
-          note: 2.5
-        },
-        {
-          name: 'Français',
-          note: 4.5
-        },
-        {
-          name: 'Allemand',
-          note: 2.5
-        }
       ]
     }
   },
   components: {
     CurrentYear,
     BranchNote
+  },
+  methods: {
+    toBranch(id, name) {
+      this.$router.push('/branch/' + id);
+    }
+  },
+  created() {
+      this.$store.commit('setHeaderName', 'Détails des notes');
   }
 }
 </script>

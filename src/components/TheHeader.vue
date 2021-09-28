@@ -2,7 +2,7 @@
     <nav class="header">
         <div class="center">
             <h2 class="header-name">{{ $store.state.headerName }}</h2>
-            <div v-if='isLogged' @click="goToProfile" class="header-profile-click">
+            <div v-if='$store.state.validSessionCookie === true' @click="goToProfile" class="header-profile-click">
                 <img class="header-profile-icon" src="../assets/user.svg"/>
             </div>
         </div>
@@ -12,16 +12,13 @@
 <script>
 
 export default {
-    computed: {
-        isLogged() {
-            return true;
-        }
-    },
     methods: {
         goToProfile() {
             this.$router.push('/profile')
-            this.$store.state.headerName = "Mon Profil";
         }
+    },
+    created() {
+        this.$store.dispatch('isSessionCookieValid');
     }
 }
 </script>

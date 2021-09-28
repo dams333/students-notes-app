@@ -19,9 +19,11 @@ export default {
   },
   methods: {
     goToCurrentYear() {
-      this.$store.state.headerName = "Détails des notes";
       this.$router.push('/current')
     }
+  },
+  created() {
+      this.$store.commit('setHeaderName', 'Profil');
   }
 }
 

@@ -21,6 +21,9 @@ export default {
         confirmPassword: ''
       }
     }
+  },
+  created() {
+      this.$store.commit('setHeaderName', 'Inscription');
   }
 }
 

@@ -14,13 +14,14 @@ export default {
     },
     methods: {
         connect() {
-            this.$store.state.headerName = "Connexion";
             this.$router.push('/login')
         },
         register() {
-            this.$store.state.headerName = "Inscription";
             this.$router.push('/register')
         }
+    },
+    created() {
+        this.$store.commit('setHeaderName', 'Accueil');
     }
 }
 </script>

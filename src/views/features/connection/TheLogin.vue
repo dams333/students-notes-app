@@ -23,8 +23,10 @@ export default {
   methods: {
     log() {
       this.$router.push('/profile')
-      this.$store.state.headerName = "Mon Profil";
     }
+  },
+  created() {
+      this.$store.commit('setHeaderName', 'Connexion');
   }
 }
 
