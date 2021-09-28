@@ -6,7 +6,7 @@ axios.defaults.baseURL = 'http://localhost:8000/'
 const store = createStore({
   state: {
     headerName: '',
-    validSessionCookie: false,
+    validSessionCookie: true,
     lastCookieValue: ''
   },
   mutations: {
@@ -30,6 +30,22 @@ const store = createStore({
       }else{
         return context.state.validSessionCookie;
       }
+    },
+    log(context, form) {
+      return axios.post('/session/log', {"pseudo": form.username, "password": form.password})
+        .then((res) => {
+          if(res.data.message === 'Unable to find user') {
+            return {status: 404};
+          }
+          if(res.data.message === 'Bad password') {
+            return {status: 500};
+          }
+          return {status: 201, user: res.data.user};
+        })
+    },
+    addCookie(context, sessionId) {
+      console.log(sessionId);
+      setCookie("students-session", sessionId, 180)
     }
   }
 });

@@ -1,11 +1,16 @@
 <template>
-    <input :type="type" :placeholder='placeholder' class="yellow-input" :style='{"width": width, "height": height}'/>
+    <input :type='type' @input='input' :placeholder='placeholder' class="yellow-input" :style='{"width": width, "height": height}'/>
 </template>
 
 <script>
 
 export default {
-    props: ['width', 'height', 'placeholder', 'type']
+    props: ['width', 'height', 'placeholder', 'type', 'selected'],
+    methods: {
+        input(e) {
+            this.$emit('update:selected', e.target.value)
+        }
+    }
 }
 </script>
 
