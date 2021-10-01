@@ -6,7 +6,7 @@ axios.defaults.baseURL = 'http://localhost:8000/'
 const store = createStore({
   state: {
     headerName: '',
-    validSessionCookie: true,
+    validSessionCookie: '',
     lastCookieValue: ''
   },
   mutations: {
@@ -44,8 +44,13 @@ const store = createStore({
         })
     },
     addCookie(context, sessionId) {
-      console.log(sessionId);
       setCookie("students-session", sessionId, 180)
+    },
+    isPseudoUsable(context, pseudo){
+      return axios.post('/user/isPseudo', {"pseudo": pseudo})
+      .then(response => {
+        return !response.data.founded;
+      })
     }
   }
 });
