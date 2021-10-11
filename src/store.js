@@ -7,7 +7,14 @@ const store = createStore({
   state: {
     headerName: '',
     validSessionCookie: '',
-    lastCookieValue: ''
+    lastCookieValue: '',
+    static: {
+      options1: [],
+      options2: [],
+      arts: [],
+      lang2: [],
+      lang3: []
+    }
   },
   mutations: {
     setSessionCookieValid(state, payload){
@@ -51,6 +58,85 @@ const store = createStore({
       .then(response => {
         return !response.data.founded;
       })
+    },
+    getAllOptions1(context) {
+      if(context.state.static.options1.length > 0) {
+        return context.state.static.options1;
+      }else{
+        return axios.get('/options/opt1')
+        .then(response => {
+          context.state.static.options1 = response.data.options;
+          return response.data.options;
+        })
+      }
+    },
+    async getAllArts(context) {
+      if(context.state.static.arts.length > 0) {
+        return context.state.static.arts;
+      }else{
+        await axios.get('/options/art')
+        .then(response => {
+          response.data.options.forEach(option => {
+            const branchID = option.branch_id;
+            axios.post('/options/getById', {"id": branchID})
+            .then(res => {
+              context.state.static.arts.push(res.data.branch);
+            });
+          })
+        })
+        return context.state.static.arts;
+      }
+    },
+    async getAllLangs2(context) {
+      if(context.state.static.lang2.length > 0) {
+        return context.state.static.lang2;
+      }else{
+        await axios.get('/options/lang2')
+        .then(response => {
+          response.data.options.forEach(option => {
+            const branchID = option.branch_id;
+            axios.post('/options/getById', {"id": branchID})
+            .then(res => {
+              context.state.static.lang2.push(res.data.branch);
+            });
+          })
+        })
+        return context.state.static.lang2;
+      }
+    },
+    async getAllLangs3(context) {
+      if(context.state.static.lang3.length > 0) {
+        return context.state.static.lang3;
+      }else{
+        await axios.get('/options/lang3')
+        .then(response => {
+          response.data.options.forEach(option => {
+            const branchID = option.branch_id;
+            axios.post('/options/getById', {"id": branchID})
+            .then(res => {
+              context.state.static.lang3.push(res.data.branch);
+            });
+          })
+        })
+        return context.state.static.lang3;
+      }
+    },
+    async getAllOptions2(context) {
+      if(context.state.static.options2.length > 0) {
+        return context.state.static.options2;
+      }else{
+        await axios.get('/options/opt2')
+        .then(response => {
+          response.data.options.forEach(option => {
+            const branchID = option.branch_id;
+            axios.post('/options/getById', {"id": branchID})
+            .then(res => {
+              context.state.static.options2.push(res.data.branch);
+            });
+          })
+        })
+        return context.state.static.options2;
+      }
     }
   }
 });
